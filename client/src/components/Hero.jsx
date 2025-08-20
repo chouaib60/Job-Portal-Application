@@ -6,8 +6,12 @@ import accenture_logo from '../assets/accenture_logo.png';
 import samsung_logo from '../assets/samsung_logo.png';
 import amazon_logo from '../assets/amazon_logo.png';
 import adobe_logo from '../assets/adobe_logo.png';
+import { useContext } from 'react';
+import AppContext from '../context/AppContext';
 
 const Hero = () => {
+  const {setSearchFilter, setIsSearched} = useContext(AppContext); //on importe le contexte Appcontext pour pouvoir utiliser les fonctions setSearchFilter et setIsSearched dans le composant Hero
+  // on utilise useContext pour pouvoir accéder aux données et fonctions du contexte Appcontext, ce qui nous permet de modifier les informations de recherche et de savoir si une recherche a été effectuée
   return (
     <div className='container xl:px-20 mx-auto my-10'>
       <div className='bg-gradient-to-r from-purple-800 to-purple-950 text-white py-16 text-center mx-2 rounded-xl'>

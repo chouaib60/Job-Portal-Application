@@ -6,12 +6,27 @@ import accenture_logo from '../assets/accenture_logo.png';
 import samsung_logo from '../assets/samsung_logo.png';
 import amazon_logo from '../assets/amazon_logo.png';
 import adobe_logo from '../assets/adobe_logo.png';
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import AppContext from '../context/AppContext';
 
 const Hero = () => {
   const {setSearchFilter, setIsSearched} = useContext(AppContext); //on importe le contexte Appcontext pour pouvoir utiliser les fonctions setSearchFilter et setIsSearched dans le composant Hero
-  // on utilise useContext pour pouvoir accéder aux données et fonctions du contexte Appcontext, ce qui nous permet de modifier les informations de recherche et de savoir si une recherche a été effectuée
+  // on utilise useContext pour pouvoir accéder aux données et fonctions définies dans le contexte "Appcontext", ce qui nous permet de modifier les informations de recherche et de savoir si une recherche a été effectuée
+  const titleRef = useRef(null); // on utilise useRef pour créer une réference mutable qui nous permettra de récuperer la valeur de l'input de recherche titre , on l'initialise à null parceque l'input n'existe pas encore dans le Dom
+  const locationRef = useRef(null); // on utilise useRef pour créer une réference mutable qui nous permettra de récuperer la valeur de l'input de recherche localisation , on l'initialise à null parceque l'input n'existe pas encore dans le Dom
+
+  const onSearch = () => {
+    setSearchFilter({
+      title:titleRef.current.value, // on récupère la valeur de l'input de recherche titre
+      location:locationRef.current.value, // on récupère la valeur de l'input de recherche localisation
+    })
+    setIsSearched(true); // on met à jour l'état issearched à true pour indiquer qu'une recherche a été effectuée
+    console.log({//
+      title: titleRef.current.value, 
+      location: locationRef.current.value
+    });
+
+  }
   return (
     <div className='container xl:px-20 mx-auto my-10'>
       <div className='bg-gradient-to-r from-purple-800 to-purple-950 text-white py-16 text-center mx-2 rounded-xl'>
@@ -30,6 +45,7 @@ const Hero = () => {
               type="text"
               placeholder='Search for jobs'
               className='w-full max-sm:text-xs p-2 outline-none border-none bg-transparent' 
+              ref={titleRef} // on associe la référence titleRef à l'input de recherche titre
             />
           </div>
           
@@ -41,10 +57,11 @@ const Hero = () => {
               type="text"
               placeholder='Location'
               className='w-full max-sm:text-xs p-2 outline-none border-none bg-transparent' 
+              ref={locationRef} // on associe la référence locationRef à l'input de recherche localisation
             />
           </div>
           
-          <button className='bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded text-white m-1 transition-colors flex-shrink-0'>
+          <button onClick={onSearch} className='bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded text-white m-1 transition-colors flex-shrink-0'>
             Search
           </button>
         </div>

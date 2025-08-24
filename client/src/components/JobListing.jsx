@@ -3,6 +3,7 @@
 import AppContext from '../context/AppContext'
 import { useContext } from 'react'
 import cross_icon from '../assets/cross_icon.svg'
+import { JobCategories } from '../assets/assets'
 const JobListing = () => {
   // j'extrais isSearched, searchFilter, setS du contexte global AppContext
   const { isSearched, searchFilter, setSearchFilter } = useContext(AppContext)
@@ -15,6 +16,7 @@ const JobListing = () => {
       <div className='w-full lg:w-1/4  bg-white px-4'>
 
         {/*searchFilter from hero component*/}
+        
         {
           // si une recherche a été effectuée (issearched  est true && and .... )
           // et que le titre ou la localisation n'est pas vide
@@ -30,13 +32,13 @@ const JobListing = () => {
 
                     {/* je mets à un croi ç coté de chaque information quand je le clique l'info et suppiméé
                     setsearchfilter va mettre à jour les valeur de searchFilter en une valeur vide lorsque je clique sur le croix */}
-                    <img onClick={ e => setSearchFilter(prev => ({...prev,title:""}))} className='cursor-pointer' src={cross_icon} alt="" />
+                    <img onClick={e => setSearchFilter(prev => ({ ...prev, title: "" }))} className='cursor-pointer' src={cross_icon} alt="" />
                   </span>
                 )}
                 {searchFilter.location && (
-                  <span className='inline-flex items-center gap-2.5 bg-red-50 border border-red-200  px-4 py-1.5 rounded'>
+                  <span className='ml-2 inline-flex items-center gap-2.5 bg-red-50 border border-red-200  px-4 py-1.5 rounded'>
                     {searchFilter.location}
-                    <img onClick={ e => setSearchFilter(prev => ({...prev,location:""}))} className='cursor-pointer' src={cross_icon} alt="" />
+                    <img onClick={e => setSearchFilter(prev => ({ ...prev, location: "" }))} className='cursor-pointer' src={cross_icon} alt="" />
                   </span>
                 )}
               </div>
@@ -45,6 +47,21 @@ const JobListing = () => {
           )
 
         }
+         {/* categorie filter des jobs */}
+         <div>
+            <h4>Search by Categories</h4>
+            <ul> 
+              {/* // <ul> est une liste non ordonnéd */}
+              {
+                JobCategories.map((category, index) => (
+                  <li key={index}>
+                    <input type="checkbox" name="" id="" />
+                    {category}
+
+                  </li>
+              ))}
+            </ul>
+         </div>
       </div>
 
     </div>

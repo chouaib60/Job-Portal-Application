@@ -3,7 +3,8 @@
 import AppContext from '../context/AppContext'
 import { useContext } from 'react'
 import cross_icon from '../assets/cross_icon.svg'
-import { JobCategories, JobLocations } from '../assets/assets'
+import { JobCategories, JobLocations, jobsData } from '../assets/assets'
+import JobCard from './JobCard'
 const JobListing = () => {
   // j'extrais isSearched, searchFilter, setS du contexte global AppContext
   const { isSearched, searchFilter, setSearchFilter } = useContext(AppContext)
@@ -64,7 +65,7 @@ const JobListing = () => {
         </div>
         {/* Location filter des jobs */}
         <div className='max-lg:mt-8'>
-          <h4 className='font-medium text-lg py-4'>Search by Locations</h4>
+          <h4 className='font-medium text-lg py-4 pt-14'>Search by Locations</h4>
           <ul className='space-y-4 text-gray-600'>
             {/* // <ul> est une liste non ordonnéd */}
             {
@@ -79,7 +80,26 @@ const JobListing = () => {
         </div>
       </div>
 
+      {/* job listing */}
+      <section className='w-full lg:w-3/4 text-gray-800 max-lg:px-4'> 
+         <h3 className='font-medium text-3xl py-2'>Latest Jobs</h3>
+         <p className='mb-8'>Get your desired job from top companies</p>
+         <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4'>
+          {/* ici j'afficherai la liste des jobs */}
+               {jobsData.map((job,index) => (
+                   <JobCard key={index} job={job} />
+               ))}
+                
+
+         </div>
+         
+      </section>
+
     </div>
+
+    
+
+
   )
 }
 

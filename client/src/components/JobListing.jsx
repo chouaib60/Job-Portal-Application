@@ -3,7 +3,7 @@
 import AppContext from '../context/AppContext'
 import { useContext } from 'react'
 import cross_icon from '../assets/cross_icon.svg'
-import { JobCategories } from '../assets/assets'
+import { JobCategories, JobLocations } from '../assets/assets'
 const JobListing = () => {
   // j'extrais isSearched, searchFilter, setS du contexte global AppContext
   const { isSearched, searchFilter, setSearchFilter } = useContext(AppContext)
@@ -16,7 +16,7 @@ const JobListing = () => {
       <div className='w-full lg:w-1/4  bg-white px-4'>
 
         {/*searchFilter from hero component*/}
-        
+
         {
           // si une recherche a été effectuée (issearched  est true && and .... )
           // et que le titre ou la localisation n'est pas vide
@@ -47,24 +47,39 @@ const JobListing = () => {
           )
 
         }
-         {/* categorie filter des jobs */}
-         <div>
-            <h4>Search by Categories</h4>
-            <ul> 
-              {/* // <ul> est une liste non ordonnéd */}
-              {
-                JobCategories.map((category, index) => (
-                  <li key={index}>
-                    <input type="checkbox" name="" id="" />
-                    {category}
+        {/* categorie filter des jobs */}
+        <div className='max-lg:mt-8'>
+          <h4 className='font-medium text-lg py-4'>Search by Categories</h4>
+          <ul className='space-y-4 text-gray-600'>
+            {/* // <ul> est une liste non ordonnéd */}
+            {
+              JobCategories.map((category, index) => (
+                <li className='flex-gap-3 items-center' key={index}>
+                  <input className='scale-125' type="checkbox" name="" id="" />
+                  {category}
 
-                  </li>
+                </li>
               ))}
-            </ul>
-         </div>
+          </ul>
+        </div>
       </div>
+      {/* Location filter des jobs */}
+      <div className='max-lg:mt-8'>
+        <h4 className='font-medium text-lg py-4'>Search by Locations</h4>
+        <ul className='space-y-4 text-gray-600'>
+          {/* // <ul> est une liste non ordonnéd */}
+          {
+            JobLocations.map((location, index) => (
+              <li className='flex-gap-3 items-center' key={index}>
+                <input className='scale-125' type="checkbox" name="" id="" />
+                {location}
 
+              </li>
+            ))}
+        </ul>
+      </div>
     </div>
+
   )
 }
 

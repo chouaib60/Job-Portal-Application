@@ -54,7 +54,7 @@ const JobListing = () => {
             {/* // <ul> est une liste non ordonnéd */}
             {
               JobCategories.map((category, index) => (
-                <li className='flex-gap-3 items-center' key={index}>
+                <li className='flex gap-3 items-center' key={index}>
                   <input className='scale-125' type="checkbox" name="" id="" />
                   {category}
 
@@ -62,25 +62,26 @@ const JobListing = () => {
               ))}
           </ul>
         </div>
-      </div>
-      {/* Location filter des jobs */}
-      <div className='max-lg:mt-8'>
-        <h4 className='font-medium text-lg py-4'>Search by Locations</h4>
-        <ul className='space-y-4 text-gray-600'>
-          {/* // <ul> est une liste non ordonnéd */}
-          {
-            JobLocations.map((location, index) => (
-              <li className='flex-gap-3 items-center' key={index}>
-                <input className='scale-125' type="checkbox" name="" id="" />
-                {location}
+        {/* Location filter des jobs */}
+        <div className='max-lg:mt-8'>
+          <h4 className='font-medium text-lg py-4'>Search by Locations</h4>
+          <ul className='space-y-4 text-gray-600'>
+            {/* // <ul> est une liste non ordonnéd */}
+            {
+              JobLocations.map((location, index) => (
+                <li className='flex gap-3 items-center' key={index}>
+                  <input className='scale-125' type="checkbox" name="" id="" />
+                  {location}
 
-              </li>
-            ))}
-        </ul>
+                </li>
+              ))}
+          </ul>
+        </div>
       </div>
+
     </div>
-
   )
 }
+
 
 export default JobListing

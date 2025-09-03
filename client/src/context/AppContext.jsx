@@ -19,7 +19,8 @@
 
 // export default AppContext;
 
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
+import { jobsData } from '../assets/assets';
 
 export const AppContext = createContext();
 
@@ -34,6 +35,20 @@ export const AppProvider = ({ children }) => {
         location: '' // initialisation des champs de recherche afin que l'utilisateur puisse saisir des informations
     }); 
     const [isSearched, setIsSearched] = useState(false); // état pour savoir si une recherche a été effectuée , son fonctionnement c'est de savoir si l'utilisateur a cliqué sur le bouton de recherche, on a initialisé avec false pour dire qu'aucune recherche n'a été effectuée au départ. et si on avait fait une recherche, on mettra isSearched à true.
+    const[jobs,setJobs]=useState([]); 
+    // - état pour stocker les offres d'emploi récupérées 
+    // en fonction des critères de recherches de l'utilisateur.
+    // - on a initialisé avec un tableau vide parcequ'au départ 
+    // on n'a pas encore récupéré d'offres d'emploi.
+
+    // function to fetch jobs :
+    const fetchJobs = async () => {
+        setJobs(jobsData)
+    }
+    useEffect(() => {
+        fetchJobs();
+    }, []);
+
     const value = {
         
     // const value est un objet qui regroupe toutes les données et fonctions ,
@@ -41,7 +56,8 @@ export const AppProvider = ({ children }) => {
 
     setSearchFilter,searchFilter, // on exporte la fonction setsearchfilteret l'état searchFilter pour pouvoir les utiliser dans les composants enfanats afin que l'utilisateur puisse saisir des informations de recherche
         isSearched, // on exporte l'état isSearched pour savoir si une recherche a été effectuée
-        setIsSearched // on exporte la fonction setIsSearched pour pouvoir modifier l'état isSearched
+        setIsSearched,jobs,setJobs,
+         // on exporte la fonction setIsSearched pour pouvoir modifier l'état isSearched
     };
     
     return (

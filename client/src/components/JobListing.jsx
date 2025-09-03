@@ -3,11 +3,11 @@
 import AppContext from '../context/AppContext'
 import { useContext } from 'react'
 import cross_icon from '../assets/cross_icon.svg'
-import { JobCategories, JobLocations, jobsData } from '../assets/assets'
+import { JobCategories, JobLocations } from '../assets/assets'
 import JobCard from './JobCard'
 const JobListing = () => {
   // j'extrais isSearched, searchFilter, setS du contexte global AppContext
-  const { isSearched, searchFilter, setSearchFilter } = useContext(AppContext)
+  const { isSearched, searchFilter, setSearchFilter, jobs } = useContext(AppContext)
 
   return (
     <div className='container 2xl:px-20 mx-auto flex flex_col lg:flex-row max-lg:space-y-8 py-8'>
@@ -86,8 +86,16 @@ const JobListing = () => {
          <p className='mb-8'>Get your desired job from top companies</p>
          <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4'>
           {/* ici j'afficherai la liste des jobs */}
-               {jobsData.map((job,index) => (
+
+{/* j'ai importé d'abord le tableau Jobsdata depuis assets.js , puis j'utilise map pour parcourir chaque élément du tableau et rendre un composant JobCard pour chaque job
+JobCard reçoit un job et affiche ses détails */}
+               {jobs.map((job,index) => (
                    <JobCard key={index} job={job} />
+//  job c'est l'objet courant dans mon tableau jobsData par exemple :
+//  { title: "Full Stack Developer", location: "California", ... }
+
+//  index c'est la position de l'élément dans le tableau (0,1,2,...) , ça sert comme un identifiant unique 
+// JobCard c'est mon composant enfant je vais lui appeler et je vais lui passer l'objet complet 'l'offre d'emploi en props job dans job={job}
                ))}
                 
 

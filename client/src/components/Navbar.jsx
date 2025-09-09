@@ -39,7 +39,7 @@ const Navbar = () => {
                 <p>|</p>
 
                 {/* Affiche le prénom et nom de l'utilisateur */}
-                <p>Hi, {user.firstName + " " + (user.lastName || "")}</p>
+                <p className='max-sm:hidden'>Hi, {user.firstName + " " + (user.lastName || "")}</p>
 
                 {/* Bouton Clerk pour accéder au compte */}
                 <UserButton />

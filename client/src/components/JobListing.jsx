@@ -1,13 +1,17 @@
 // JobListing.jsx est un composant qui sert à afficher les informations de recherche actuelles (current search)
 // il récupère les données de recherche (title et location) à partir du contexte global AppContext
 import AppContext from '../context/AppContext'
-import { useContext } from 'react'
+import { useContext , useState } from 'react'
 import cross_icon from '../assets/cross_icon.svg'
 import { JobCategories, JobLocations } from '../assets/assets'
 import JobCard from './JobCard'
 const JobListing = () => {
-  // j'extrais isSearched, searchFilter, setS du contexte global AppContext
+  // j'extrais isSearched, searchFilter, setSearchFilter du contexte global AppContext
   const { isSearched, searchFilter, setSearchFilter, jobs } = useContext(AppContext)
+
+  const [showFilter, setShowFilter] = useState(true);
+  // état pour gérer l'affichage du filtre sur les petits écrans (mobile) 
+  // le filtre c'est la sidebar à gauche
 
   return (
     <div className='container 2xl:px-20 mx-auto flex flex_col lg:flex-row max-lg:space-y-8 py-8'>
@@ -31,10 +35,10 @@ const JobListing = () => {
                   <span className='inline-flex items-center gap-2.5 bg-blue-50 border border-blue-200  px-4 py-1.5 rounded'>
                     {searchFilter.title}
 
-                    {/* je mets à un croi ç coté de chaque information quand je le clique l'info et suppiméé
+                    {/* je mets à un croi à coté de chaque information quand je le clique l'info et suppiméé
                     setsearchfilter va mettre à jour les valeur de searchFilter en une valeur vide lorsque je clique sur le croix */}
                     <img onClick={e => setSearchFilter(prev => ({ ...prev, title: "" }))} className='cursor-pointer' src={cross_icon} alt="" />
-                  </span>
+                  </span> 
                 )}
                 {searchFilter.location && (
                   <span className='ml-2 inline-flex items-center gap-2.5 bg-red-50 border border-red-200  px-4 py-1.5 rounded'>
@@ -48,8 +52,26 @@ const JobListing = () => {
           )
 
         }
+        {/* bouton pour afficher ou cacher le filtre sur les petits écrans (mobile) */}
+        <button onClick={e => setShowFilter(prev => !prev)} className='px-6 py-1.5 rounded border border-gray-400 lg:hidden'>
+          {/* onClick est une propriété en JavaScript qui s’exécute lorsque je clique sur le bouton.
+ - e => est une fonction fléchée qui reçoit l’événement du clic. 
+ - Quand je clique, la fonction fléchée appelle setShowFilter qui modifie l’état showFilter.
+ - tq prev represente l'ancienne état de showfilter et elle se tranformer en sa négation lorsque je clique sur le bouton
+ - quand je fais (prev) => !prev , react execute cette fonction en lui donnant comme
+  argument à prev la valeur actuelle de showfilter puis on la met à jour (sa négation !prev) ,
+  donc si showfilter était true elle devient false et vice versa
+  - donc prev automatiquement devient l'ancienne valeur de showfilter .
+ */}
+
+
+            {/* si showfilter est true j'affiche "close" sinon j'affiche "filters" */}
+            {showFilter ? "Close" : "Filters"} 
+        </button>
+
+
         {/* categorie filter des jobs */}
-        <div className='max-lg:mt-8'>
+        <div className={showFilter ? "" : "max-lg:hidden" }>
           <h4 className='font-medium text-lg py-4'>Search by Categories</h4>
           <ul className='space-y-4 text-gray-600'>
             {/* // <ul> est une liste non ordonnéd */}
@@ -63,8 +85,12 @@ const JobListing = () => {
               ))}
           </ul>
         </div>
+
         {/* Location filter des jobs */}
-        <div className='max-lg:mt-8'>
+
+        <div className={showFilter ? "" : "max-lg:hidden" }> 
+          {/* // si showfilter est true j'affiche les filtres ( de location et de catégorie ) sinon je le cache sur les petits écrans
+          // showfilter est true ca veut dire que l'utilisateur a cliqué sur le bouton "filters" pour afficher le filtre */}
           <h4 className='font-medium text-lg py-4 pt-14'>Search by Locations</h4>
           <ul className='space-y-4 text-gray-600'>
             {/* // <ul> est une liste non ordonnéd */}
@@ -91,6 +117,7 @@ const JobListing = () => {
 JobCard reçoit un job et affiche ses détails */}
                {jobs.map((job,index) => (
                    <JobCard key={index} job={job} />
+//  ici jobs c'est le tableau d'offres d'emploi que j'ai dans mon état jobs
 //  job c'est l'objet courant dans mon tableau jobsData par exemple :
 //  { title: "Full Stack Developer", location: "California", ... }
 

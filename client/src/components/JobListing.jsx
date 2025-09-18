@@ -1,8 +1,10 @@
 // JobListing.jsx est un composant qui sert à afficher les informations de recherche actuelles (current search)
 // il récupère les données de recherche (title et location) à partir du contexte global AppContext
 import AppContext from '../context/AppContext'
-import { useContext , useState } from 'react'
+import { useContext, useState } from 'react'
 import cross_icon from '../assets/cross_icon.svg'
+import left_arrow_icon from '../assets/left_arrow_icon.svg'
+import right_arrow_icon from '../assets/right_arrow_icon.svg'
 import { JobCategories, JobLocations } from '../assets/assets'
 import JobCard from './JobCard'
 const JobListing = () => {
@@ -11,7 +13,10 @@ const JobListing = () => {
 
   const [showFilter, setShowFilter] = useState(true);
   // état pour gérer l'affichage du filtre sur les petits écrans (mobile) 
-  // le filtre c'est la sidebar à gauche
+  // le filtre c'est la sidebar à gauche ( de location et categorie)
+
+  //on cree une state variable pour gérer la pagination
+  const [currentPage, setCurrentPage] = useState(1); // oninitilise la page courante à 1
 
   return (
     <div className='container 2xl:px-20 mx-auto flex flex_col lg:flex-row max-lg:space-y-8 py-8'>
@@ -38,7 +43,7 @@ const JobListing = () => {
                     {/* je mets à un croi à coté de chaque information quand je le clique l'info et suppiméé
                     setsearchfilter va mettre à jour les valeur de searchFilter en une valeur vide lorsque je clique sur le croix */}
                     <img onClick={e => setSearchFilter(prev => ({ ...prev, title: "" }))} className='cursor-pointer' src={cross_icon} alt="" />
-                  </span> 
+                  </span>
                 )}
                 {searchFilter.location && (
                   <span className='ml-2 inline-flex items-center gap-2.5 bg-red-50 border border-red-200  px-4 py-1.5 rounded'>
@@ -65,13 +70,13 @@ const JobListing = () => {
  */}
 
 
-            {/* si showfilter est true j'affiche "close" sinon j'affiche "filters" */}
-            {showFilter ? "Close" : "Filters"} 
+          {/* si showfilter est true j'affiche "close" sinon j'affiche "filters" */}
+          {showFilter ? "Close" : "Filters"}
         </button>
 
 
         {/* categorie filter des jobs */}
-        <div className={showFilter ? "" : "max-lg:hidden" }>
+        <div className={showFilter ? "" : "max-lg:hidden"}>
           <h4 className='font-medium text-lg py-4'>Search by Categories</h4>
           <ul className='space-y-4 text-gray-600'>
             {/* // <ul> est une liste non ordonnéd */}
@@ -88,7 +93,7 @@ const JobListing = () => {
 
         {/* Location filter des jobs */}
 
-        <div className={showFilter ? "" : "max-lg:hidden" }> 
+        <div className={showFilter ? "" : "max-lg:hidden"}>
           {/* // si showfilter est true j'affiche les filtres ( de location et de catégorie ) sinon je le cache sur les petits écrans
           // showfilter est true ca veut dire que l'utilisateur a cliqué sur le bouton "filters" pour afficher le filtre */}
           <h4 className='font-medium text-lg py-4 pt-14'>Search by Locations</h4>
@@ -107,32 +112,50 @@ const JobListing = () => {
       </div>
 
       {/* job listing */}
-      <section className='w-full lg:w-3/4 text-gray-800 max-lg:px-4'> 
-         <h3 className='font-medium text-3xl py-2'>Latest Jobs</h3>
-         <p className='mb-8'>Get your desired job from top companies</p>
-         <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4'>
+      <section className='w-full lg:w-3/4 text-gray-800 max-lg:px-4'>
+        <h3 className='font-medium text-3xl py-2'>Latest Jobs</h3>
+        <p className='mb-8'>Get your desired job from top companies</p>
+        <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4'>
           {/* ici j'afficherai la liste des jobs */}
 
-{/* j'ai importé d'abord le tableau Jobsdata depuis assets.js , puis j'utilise map pour parcourir chaque élément du tableau et rendre un composant JobCard pour chaque job
+          {/* j'ai importé d'abord le tableau Jobsdata depuis assets.js , puis j'utilise map pour parcourir chaque élément du tableau et rendre un composant JobCard pour chaque job
 JobCard reçoit un job et affiche ses détails */}
-               {jobs.map((job,index) => (
-                   <JobCard key={index} job={job} />
-//  ici jobs c'est le tableau d'offres d'emploi que j'ai dans mon état jobs
-//  job c'est l'objet courant dans mon tableau jobsData par exemple :
-//  { title: "Full Stack Developer", location: "California", ... }
+          {jobs.map((job, index) => (
+            <JobCard key={index} job={job} />
+            //  ici jobs c'est le tableau d'offres d'emploi que j'ai dans mon état jobs
+            //  job c'est l'objet courant dans mon tableau jobsData par exemple :
+            //  { title: "Full Stack Developer", location: "California", ... }
 
-//  index c'est la position de l'élément dans le tableau (0,1,2,...) , ça sert comme un identifiant unique 
-// JobCard c'est mon composant enfant je vais lui appeler et je vais lui passer l'objet complet 'l'offre d'emploi en props job dans job={job}
-               ))}
-                
+            //  index c'est la position de l'élément dans le tableau (0,1,2,...) , ça sert comme un identifiant unique 
+            // JobCard c'est mon composant enfant je vais lui appeler et je vais lui passer l'objet complet 'l'offre d'emploi en props job dans job={job}
+          ))}
 
-         </div>
-         
+
+        </div>
+
+        {/* pagination */}
+        {/* la pagination c'est pour naviguer entre les pages de résultats d'offres d'emploi */}
+        {jobs.length > 0 && ( // si j'ai des jobs dans mon tableau jobs
+          <div className='flex items-center justify-center space-x-2 mt-10'>
+            <a href="#job-list">
+              <img src={left_arrow_icon} alt="" />
+            </a>
+            {Array.from({ length: Math.ceil(jobs.length / 6) }).map((_, index) => (
+              <a href="#job-list">
+                <button className={`w-10 h-10 flex items-center justify-center border-gray-300 rounded`}>{index + 1} </button>
+              </a>
+            ))}
+            <a href="#job-list">
+              <img src={right_arrow_icon} alt="" />
+            </a>
+          </div>
+        )}
+
       </section>
 
     </div>
 
-    
+
 
 
   )

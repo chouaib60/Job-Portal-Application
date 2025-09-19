@@ -71,12 +71,15 @@ const JobListing = () => {
 
 
           {/* si showfilter est true j'affiche "close" sinon j'affiche "filters" */}
+          {/* // showfilter est true ca veut dire que l'utilisateur a cliqué sur le bouton "filters" pour afficher le filtre */}
           {showFilter ? "Close" : "Filters"}
         </button>
 
 
         {/* categorie filter des jobs */}
         <div className={showFilter ? "" : "max-lg:hidden"}>
+          {/* // si showfilter est true j'affiche les filtres ( de location et de catégorie ) sinon je le cache sur les petits écrans
+          // showfilter est true ca veut dire que l'utilisateur a cliqué sur le bouton "filters" pour afficher le filtre */}
           <h4 className='font-medium text-lg py-4'>Search by Categories</h4>
           <ul className='space-y-4 text-gray-600'>
             {/* // <ul> est une liste non ordonnéd */}
@@ -113,7 +116,7 @@ const JobListing = () => {
 
       {/* job listing */}
       <section className='w-full lg:w-3/4 text-gray-800 max-lg:px-4'>
-        <h3 className='font-medium text-3xl py-2'>Latest Jobs</h3>
+        <h3 className='font-medium text-3xl py-2' id='job-list'>Latest Jobs</h3>
         <p className='mb-8'>Get your desired job from top companies</p>
         <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4'>
           {/* ici j'afficherai la liste des jobs */}
@@ -135,14 +138,14 @@ JobCard reçoit un job et affiche ses détails */}
 
         {/* pagination */}
         {/* la pagination c'est pour naviguer entre les pages de résultats d'offres d'emploi */}
-        {jobs.length > 0 && ( // si j'ai des jobs dans mon tableau jobs
+        {jobs.length > 0 && ( // ce code ne s'éxecute que si mon tableau jobs contient au moins un job , sinon pas de pagination à afficher
           <div className='flex items-center justify-center space-x-2 mt-10'>
-            <a href="#job-list">
+            <a href="#job-list"> {/*ça sert à remonter automatiquement l'éran vers la section en haut qui contient les offres d'emploi (celle avec l'id job-list , j'ai défini cette id dans le h3 "latest jobs" pour l'affichage des offres d'emploi) */}
               <img src={left_arrow_icon} alt="" />
             </a>
             {Array.from({ length: Math.ceil(jobs.length / 6) }).map((_, index) => (
               <a href="#job-list">
-                <button className={`w-10 h-10 flex items-center justify-center border-gray-300 rounded`}>{index + 1} </button>
+                <button className={`w-10 h-10 flex items-center justify-center border-gray-300 rounded ${currentPage === index + 1 ? 'bg-blue-100 text-blue-500' : 'text-gray-500'}`}>{index + 1} </button>
               </a>
             ))}
             <a href="#job-list">

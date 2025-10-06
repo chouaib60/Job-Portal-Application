@@ -143,9 +143,21 @@ JobCard reçoit un job et affiche ses détails */}
             <a href="#job-list"> {/*ça sert à remonter automatiquement l'éran vers la section en haut qui contient les offres d'emploi (celle avec l'id job-list , j'ai défini cette id dans le h3 "latest jobs" pour l'affichage des offres d'emploi) */}
               <img src={left_arrow_icon} alt="" />
             </a>
-            {Array.from({ length: Math.ceil(jobs.length / 6) }).map((_, index) => (
+            {/*  ce bloc sert à afficher le nombre de pagination selon le nombre de jobs que j'ai : */}
+            {Array.from({ length: Math.ceil(jobs.length / 6) }).map((_, index) => ( 
+              // - length: Math.ceil(jobs.length / 6) : on calcule ici le nombre de page nécessaires pour afficher les jobs
+            // tq si on veut afficher 6 jobs par page , par exemple si j'ai 12 jobs j'aurai 12/6 = 3 pages
+            // - Array.from on crée un tableau vide de la taille de nombre de pages necessaires (length) , dans ce cas 3 : [ , , ]
+            // -map : on parcourt chaque élément de ce tableau vide qui a la taille de nombre de pages selon les jobs que j'ai .
+            // - _ : c'est une convention pour dire que je n'utilise pas cet argument (l'élément courant du tableau vide)
+            // - index : c'est la position de l'élément dans le tableau (0,1,2,...) tq  dans notre exemple à la premiere itération dans le tableau vide
+            // index = 0 , à la deuxième , index + 1 = 1 , à la troisième index + 1 = 2 etc et  le currentPage == index + 1
+
+
               <a href="#job-list">
                 <button className={`w-10 h-10 flex items-center justify-center border-gray-300 rounded ${currentPage === index + 1 ? 'bg-blue-100 text-blue-500' : 'text-gray-500'}`}>{index + 1} </button>
+                {/* quand currentpage qui est initialisé à 1 est égale à index + 1 (la page courante est égale à la position de l'élément dans le tableau + 1 parceque l'index commence à 0)
+                 j'applique un style différent pour indiquer que c'est la page active (bg-blue-100 text-blue-500) */}
               </a>
             ))}
             <a href="#job-list">

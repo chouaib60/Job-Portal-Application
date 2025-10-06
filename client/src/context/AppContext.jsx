@@ -43,9 +43,19 @@ export const AppProvider = ({ children }) => {
 
     // function to fetch jobs :
     const fetchJobs = async () => {
-        setJobs(jobsData)
+        setJobs(jobsData) 
+        // 1. C’est une fonction qui utilise setJobs (fournie par useState)
+        //  pour remplir le tableau jobs avec les données de jobsData.
+        // au lieu d'avoir directement jobsData dans useState,
+        // on utilise une fonction pour simuler une vrai récuperation des données,
+        // comme si j'allais les chercher d'une api ou d'une base de données.
+        // 2. useffect permet d'appeler et éxecuter cette fonction une seule fois,
+        // après que le composant a été monté dans le DOM.
+        // car sans useffect, la fonction fetchjobs serait appelée à chaque rendu du composant
+
     }
-    useEffect(() => {
+
+    useEffect(() => { //
         fetchJobs();
     }, []);
 

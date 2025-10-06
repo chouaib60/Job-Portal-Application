@@ -16,9 +16,16 @@ const Hero = () => {
   const locationRef = useRef(null); // on utilise useRef pour créer une réference mutable qui nous permettra de récuperer la valeur de l'input de recherche localisation , on l'initialise à null parceque l'input n'existe pas encore dans le Dom
 
   const onSearch = () => {
+
+    // cette fonction est appelée lorsque l'utilisateur clique sur le bouton de recherche
+
+    // logique :
+      //quand l'utilisateur clique sur search on met à jour l'état searchFilter avec les valeurs des inputs 
+     // et  on met à jour l'état issearched à true pour indiquer qu'une recherche a été effectuée
     setSearchFilter({
       title:titleRef.current.value, // on récupère la valeur de l'input de recherche titre
       location:locationRef.current.value, // on récupère la valeur de l'input de recherche localisation
+
     })
     setIsSearched(true); // on met à jour l'état issearched à true pour indiquer qu'une recherche a été effectuée
     console.log({//

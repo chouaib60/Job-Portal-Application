@@ -1,77 +1,141 @@
-// import { createContext } from 'react';
+// // import { createContext } from 'react';
 
-// // on crée le contexte qui va contenir le données qu'on veut partager dans l'application , c'est comme une sorte de canal de communication entre les composants
-// // on peut y mettre des données, des fonctions, etc. Les composants qui consomment ce contexte peuvent  accéder à ces données et fonctions etl'utiliser comme s'ils étaient dans le même composant parent.
-// export const AppContext = createContext() // export permet à ce composant d'etre utilisé et importé dans d'autres fichiers
+// // // on crée le contexte qui va contenir le données qu'on veut partager dans l'application , c'est comme une sorte de canal de communication entre les composants
+// // // on peut y mettre des données, des fonctions, etc. Les composants qui consomment ce contexte peuvent  accéder à ces données et fonctions etl'utiliser comme s'ils étaient dans le même composant parent.
+// // export const AppContext = createContext() // export permet à ce composant d'etre utilisé et importé dans d'autres fichiers
 
-// // on crée le provider qui va permettre de partager les données du contexte avec les composants enfants
-// export const AppProvider = () => {
-//     const value = {
-//         // ici on met les données et fonctions que l'on veut partager
+// // // on crée le provider qui va permettre de partager les données du contexte avec les composants enfants
+// // export const AppProvider = () => {
+// //     const value = {
+// //         // ici on met les données et fonctions que l'on veut partager
+// //     }
+// //     return (
+// //         <AppContext.Provider value={value}>
+// //             {/* children components will go here */}
+// //         </AppContext.Provider>
+// //     );
+
+// // };
+
+// // export default AppContext;
+
+// import { createContext, useState, useEffect } from 'react';
+// import { jobsData } from '../assets/assets';
+
+// export const AppContext = createContext();
+
+// export const AppProvider = ({ children }) => {
+//     // on crée un état avec usestate pour stocker les informations de recherche de l'utilisateur
+
+//     const [searchFilter, setSearchFilter] = useState({ // setsearchfilter permet de modifier l'état de searchFilter 
+// // searchFilter est un objet contenant les informations de recherche de l'utilisateur (title et location) , afin que l'utilisateur puisse saisir des informations de recherche
+// // setSearchFilter permet de mettre à jour ces informations (title et localisation) en fonction de ce que l'utilisateur saisit dans les champs de recherche (search input)
+        
+//         title: '', //initialisation des champs de recherche afin que l'utilisateur puisse saisir des informations
+//         location: '' // initialisation des champs de recherche afin que l'utilisateur puisse saisir des informations
+//     }); 
+//     const [isSearched, setIsSearched] = useState(false); // état pour savoir si une recherche a été effectuée , son fonctionnement c'est de savoir si l'utilisateur a cliqué sur le bouton de recherche, on a initialisé avec false pour dire qu'aucune recherche n'a été effectuée au départ. et si on avait fait une recherche, on mettra isSearched à true.
+//     const[jobs,setJobs]=useState([]); 
+//     // - état pour stocker les offres d'emploi récupérées 
+//     // en fonction des critères de recherches de l'utilisateur.
+//     // - on a initialisé avec un tableau vide parcequ'au départ 
+//     // on n'a pas encore récupéré d'offres d'emploi.
+
+//     // function to fetch jobs :
+//     const fetchJobs = async () => {
+//         setJobs(jobsData) 
+//         // 1. C’est une fonction qui utilise setJobs (fournie par useState)
+//         //  pour remplir le tableau jobs avec les données de jobsData.
+//         // au lieu d'avoir directement jobsData dans useState,
+//         // on utilise une fonction pour simuler une vrai récuperation des données,
+//         // comme si j'allais les chercher d'une api ou d'une base de données.
+//         // 2. useffect permet d'appeler et éxecuter cette fonction une seule fois,
+//         // après que le composant a été monté dans le DOM.
+//         // car sans useffect, la fonction fetchjobs serait appelée à chaque rendu du composant
+
 //     }
+
+//     useEffect(() => { //
+//         fetchJobs();
+//     }, []);
+
+//     const value = {
+        
+//     // const value est un objet qui regroupe toutes les données et fonctions ,
+//     // que l'on veut partager avec les composants enfants
+
+//     setSearchFilter,searchFilter, // on exporte la fonction setsearchfilteret l'état searchFilter pour pouvoir les utiliser dans les composants enfanats afin que l'utilisateur puisse saisir des informations de recherche
+//         isSearched, // on exporte l'état isSearched pour savoir si une recherche a été effectuée
+//         setIsSearched,jobs,setJobs,
+//          // on exporte la fonction setIsSearched pour pouvoir modifier l'état isSearched
+//     };
+    
 //     return (
+//     // je donne aux composants enfants (children) l'accès à tout ce qu'il y a dans value
 //         <AppContext.Provider value={value}>
-//             {/* children components will go here */}
+//             {children}
 //         </AppContext.Provider>
 //     );
-
 // };
 
 // export default AppContext;
-
+// AppContext.jsx
+// AppContext.jsx
 import { createContext, useState, useEffect } from 'react';
 import { jobsData } from '../assets/assets';
 
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-    // on crée un état avec usestate pour stocker les informations de recherche de l'utilisateur
-
-    const [searchFilter, setSearchFilter] = useState({ // setsearchfilter permet de modifier l'état de searchFilter 
-// searchFilter est un objet contenant les informations de recherche de l'utilisateur (title et location) , afin que l'utilisateur puisse saisir des informations de recherche
-// setSearchFilter permet de mettre à jour ces informations (title et localisation) en fonction de ce que l'utilisateur saisit dans les champs de recherche (search input)
-        
-        title: '', //initialisation des champs de recherche afin que l'utilisateur puisse saisir des informations
-        location: '' // initialisation des champs de recherche afin que l'utilisateur puisse saisir des informations
+    const [searchFilter, setSearchFilter] = useState({
+        title: '',
+        location: ''
     }); 
-    const [isSearched, setIsSearched] = useState(false); // état pour savoir si une recherche a été effectuée , son fonctionnement c'est de savoir si l'utilisateur a cliqué sur le bouton de recherche, on a initialisé avec false pour dire qu'aucune recherche n'a été effectuée au départ. et si on avait fait une recherche, on mettra isSearched à true.
-    const[jobs,setJobs]=useState([]); 
-    // - état pour stocker les offres d'emploi récupérées 
-    // en fonction des critères de recherches de l'utilisateur.
-    // - on a initialisé avec un tableau vide parcequ'au départ 
-    // on n'a pas encore récupéré d'offres d'emploi.
+    const [isSearched, setIsSearched] = useState(false);
+    const [jobs, setJobs] = useState([]);
+    const [applications, setApplications] = useState([]); // ⬅️ NOUVEL ÉTAT
 
-    // function to fetch jobs :
+    // Fonction pour transformer les données jobsData
+    const transformJobsData = (jobsData) => {
+        return jobsData.map(job => ({
+            id: job.id,
+            title: job.title,
+            location: job.location,
+            level: job.level,
+            company: job.companyId?.name || job.company || 'Company',
+            description: job.description,
+            salary: job.salary,
+            type: job.type || 'CDI',
+            category: job.category
+        }));
+    };
+
+    // Fonction pour ajouter une candidature
+    const addApplication = (application) => {
+        setApplications(prev => [...prev, application]);
+    };
+
     const fetchJobs = async () => {
-        setJobs(jobsData) 
-        // 1. C’est une fonction qui utilise setJobs (fournie par useState)
-        //  pour remplir le tableau jobs avec les données de jobsData.
-        // au lieu d'avoir directement jobsData dans useState,
-        // on utilise une fonction pour simuler une vrai récuperation des données,
-        // comme si j'allais les chercher d'une api ou d'une base de données.
-        // 2. useffect permet d'appeler et éxecuter cette fonction une seule fois,
-        // après que le composant a été monté dans le DOM.
-        // car sans useffect, la fonction fetchjobs serait appelée à chaque rendu du composant
-
+        const transformedJobs = transformJobsData(jobsData);
+        setJobs(transformedJobs);
     }
 
-    useEffect(() => { //
+    useEffect(() => {
         fetchJobs();
     }, []);
 
     const value = {
-        
-    // const value est un objet qui regroupe toutes les données et fonctions ,
-    // que l'on veut partager avec les composants enfants
-
-    setSearchFilter,searchFilter, // on exporte la fonction setsearchfilteret l'état searchFilter pour pouvoir les utiliser dans les composants enfanats afin que l'utilisateur puisse saisir des informations de recherche
-        isSearched, // on exporte l'état isSearched pour savoir si une recherche a été effectuée
-        setIsSearched,jobs,setJobs,
-         // on exporte la fonction setIsSearched pour pouvoir modifier l'état isSearched
+        setSearchFilter,
+        searchFilter,
+        isSearched,
+        setIsSearched,
+        jobs,
+        setJobs,
+        applications, // ⬅️ EXPORTEZ LES CANDIDATURES
+        addApplication, // ⬅️ EXPORTEZ LA FONCTION D'AJOUT
     };
     
     return (
-    // je donne aux composants enfants (children) l'accès à tout ce qu'il y a dans value
         <AppContext.Provider value={value}>
             {children}
         </AppContext.Provider>

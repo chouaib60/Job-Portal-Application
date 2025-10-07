@@ -1,32 +1,27 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-import { BrowserRouter } from 'react-router-dom'
-import { AppProvider } from './context/AppContext.jsx'
-import { ClerkProvider } from '@clerk/clerk-react'
+// src/main.jsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { ClerkProvider } from '@clerk/clerk-react';
+import { AppProvider } from './context/AppContext';
+import App from './App.jsx';
+import './index.css';
 
-// Récupération de la clé publique depuis .env
-const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
+// Importez votre clé Clerk
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
 if (!PUBLISHABLE_KEY) {
-  throw new Error('Missing Publishable Key')
+  throw new Error('Ajoutez votre clé Clerk dans le fichier .env');
 }
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <BrowserRouter>
-      <ClerkProvider // clerk provider c'est contexte qui va rendre disponibles les infos et fonctions clerk dans tout ton projet
-      // PUBLISHABLE_KEY est la clé public de mon projet pour identifier mon application chez clerk
-        publishableKey={PUBLISHABLE_KEY}
-        navigate={(to) => window.history.pushState(null, '', to)}
-        // navigate c'est une fonction clerk qui permet de gérer la navigation dans l'application , c'est pour rediriger l'utilisateur (par exemple : quand il clique sur login ou logout il est redirigé vers une autre page)
-        // on utilise window.history.pushState pour mettre à jour l'URL sans recharger la page
-      > 
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+      <BrowserRouter>
         <AppProvider>
           <App />
         </AppProvider>
-      </ClerkProvider>
-    </BrowserRouter>
-  </StrictMode>
-)
+      </BrowserRouter>
+    </ClerkProvider>
+  </React.StrictMode>,
+);

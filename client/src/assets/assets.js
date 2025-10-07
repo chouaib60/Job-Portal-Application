@@ -156,7 +156,7 @@ export const viewApplicationsPageData = [
 
 export const jobsData = [
     {
-        _id: '1',
+        id: '1',
         title: "Full Stack Developer",
         location: "California",
         level: "Senior Level",
@@ -189,7 +189,7 @@ export const jobsData = [
         category: "Programming",
     },
     {
-        _id: '2',
+        id: '2',
         title: "Data Scientist",
         location: "New York",
         level: "Intermediate Level",
@@ -222,7 +222,7 @@ export const jobsData = [
         category: "Data Science",
     },
     {
-        _id: '3',
+        id: '3',
         title: "UI/UX Designer",
         location: "Bangalore",
         level: "Beginner Level",
@@ -255,7 +255,7 @@ export const jobsData = [
         category: "Designing",
     },
     {
-        _id: '4',
+        id: '4',
         title: "DevOps Engineer",
         location: "Washington",
         level: "Senior Level",
@@ -288,7 +288,7 @@ export const jobsData = [
         category: "Programming",
     },
     {
-        _id: '5',
+        id: '5',
         title: "Software Engineer",
         location: "Hyderabad",
         level: "Intermediate Level",
@@ -321,7 +321,7 @@ export const jobsData = [
         category: "Programming",
     },
     {
-        _id: '6',
+        id: '6',
         title: "Network Engineer",
         location: "Bangalore",
         level: "Senior Level",
@@ -354,7 +354,7 @@ export const jobsData = [
         category: "Networking",
     },
     {
-        _id: '7',
+        id: '7',
         title: "Project Manager",
         location: "Bangalore",
         level: "Senior Level",
@@ -387,7 +387,7 @@ export const jobsData = [
         category: "Management",
     },
     {
-        _id: '8',
+        id: '8',
         title: "Mobile App Developer",
         location: "Hyderabad",
         level: "Intermediate Level",
@@ -420,7 +420,7 @@ export const jobsData = [
         category: "Programming",
     },
     {
-        _id: '9',
+        id: '9',
         title: "Cloud Architect",
         location: "Hyderabad",
         level: "Senior Level",
@@ -453,7 +453,7 @@ export const jobsData = [
         category: "Programming",
     },
     {
-        _id: '10',
+        id: '10',
         title: "Technical Writer",
         location: "Mumbai",
         level: "Intermediate Level",
@@ -486,7 +486,7 @@ export const jobsData = [
         category: "Marketing",
     },
     {
-        _id: '11',
+        id: '11',
         title: "Cybersecurity Analyst",
         location: "Mumbai",
         level: "Intermediate Level",
@@ -519,7 +519,7 @@ export const jobsData = [
         category: "Cybersecurity",
     },
     {
-        _id: '12',
+        id: '12',
         title: "Business Analyst",
         location: "Mumbai",
         level: "Intermediate Level",
@@ -552,7 +552,7 @@ export const jobsData = [
         category: "Management",
     },
     {
-        _id: '13',
+        id: '13',
         title: "Marketing Specialist",
         location: "Chennai",
         level: "Beginner Level",
@@ -585,7 +585,7 @@ export const jobsData = [
         category: "Marketing",
     },
     {
-        _id: '14',
+        id: '14',
         title: "Data Scientist",
         location: "California",
         level: "Senior Level",
@@ -618,7 +618,7 @@ export const jobsData = [
         category: "Data Science",
     },
     {
-        _id: '15',
+        id: '15',
         title: "UX/UI Designer",
         location: "Hyderabad",
         level: "Intermediate Level",
@@ -651,7 +651,7 @@ export const jobsData = [
         category: "Design",
     },
     {
-        _id: '16',
+        id: '16',
         title: "DevOps Engineer",
         location: "Bangalore",
         level: "Senior Level",
@@ -684,7 +684,7 @@ export const jobsData = [
         category: "Programming",
     },
     {
-        _id: '17',
+        id: '17',
         title: "Sales Manager",
         location: "New York",
         level: "Senior Level",
@@ -717,7 +717,7 @@ export const jobsData = [
         category: "Marketing",
     },
     {
-        _id: '18',
+        id: '18',
         title: "Human Resources Specialist",
         location: "Washington",
         level: "Intermediate Level",
@@ -750,7 +750,7 @@ export const jobsData = [
         category: "Management",
     },
     {
-        _id: '19',
+        id: '19',
         title: "Content Marketing Manager",
         location: "Mumbai",
         level: "Senior Level",
@@ -783,7 +783,7 @@ export const jobsData = [
         category: "Marketing",
     },
     {
-        _id: '20',
+        id: '20',
         title: "Graphic Designer",
         location: "Chennai",
         level: "Intermediate Level",
@@ -816,7 +816,7 @@ export const jobsData = [
         category: "Design",
     },
     {
-        _id: '21',
+        id: '21',
         title: "Software Tester",
         location: "Chennai",
         level: "Intermediate Level",
@@ -849,7 +849,7 @@ export const jobsData = [
         category: "Programming",
     },
     {
-        _id: '22',
+        id: '22',
         title: "Network Security Engineer",
         location: "Bangalore",
         level: "Senior Level",
@@ -882,7 +882,7 @@ export const jobsData = [
         category: "Cybersecurity",
     },
     {
-        _id: '23',
+        id: '23',
         title: "Cloud Engineer",
         location: "Hyderabad",
         level: "Intermediate Level",

@@ -1,13 +1,15 @@
 // src/pages/ApplyForm.jsx
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import AppContext from '../context/AppContext';
 
 const API_URL = 'http://localhost:5000/api';
 
-export default function ApplyForm() {
+function ApplyForm() {
   const { jobId } = useParams();
   const navigate = useNavigate();
+  const { addApplication } = useContext(AppContext);
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -25,9 +27,17 @@ export default function ApplyForm() {
 
   const fetchJob = async () => {
     try {
-      const response = await fetch(`${API_URL}/jobs/${jobId}`);
-      const data = await response.json();
-      setJob(data);
+      // Données mock pour tester
+      const mockJob = {
+        id: jobId,
+        title: 'Développeur React JS Senior',
+        company: 'Tech Innovation',
+        location: 'Paris, France',
+        salary: '45 000€ - 55 000€',
+        type: 'CDI',
+        description: 'Nous recherchons un développeur React expérimenté pour rejoindre notre équipe.'
+      };
+      setJob(mockJob);
     } catch (err) {
       toast.error('Erreur lors du chargement de l\'offre');
     }
@@ -81,6 +91,21 @@ export default function ApplyForm() {
       const result = await response.json();
 
       if (response.ok) {
+        // Sauvegarder la candidature dans le contexte
+        const newApplication = {
+          id: Date.now(),
+          jobId: jobId,
+          jobTitle: job.title,
+          company: job.company,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          appliedDate: new Date().toLocaleDateString('fr-FR'),
+          status: 'En attente'
+        };
+        
+        addApplication(newApplication);
+        
         toast.success('Candidature envoyée avec succès !');
         setTimeout(() => navigate('/'), 2000);
       } else {
@@ -224,3 +249,6 @@ export default function ApplyForm() {
     </div>
   );
 }
+
+// ⬅️ ASSUREZ-VOUS D'AVOIR CETTE LIGNE À LA FIN
+export default ApplyForm;

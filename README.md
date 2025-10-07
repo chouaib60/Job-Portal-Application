@@ -1,4 +1,4 @@
-🌐 Job Portal - Plateforme de Recrutement
+# 🌐 Job Portal - Plateforme de Recrutement
 
 Job Portal est une application web complète de recrutement qui permet :
 
@@ -6,20 +6,20 @@ aux candidats de trouver et postuler à des offres d’emploi,
 
 aux recruteurs de publier et gérer leurs annonces ainsi que les candidatures reçues.
 
-🚀 Fonctionnalités
-👨‍💼 Pour les Candidats
+#🚀 Fonctionnalités
+## 👨‍💼 Pour les Candidats
 
-Consultation des offres d'emploi
+- Consultation des offres d'emploi
 
-Recherche et filtrage (titre, localisation, catégorie, type de contrat)
+- Recherche et filtrage (titre, localisation, catégorie, type de contrat)
 
-Postulation en ligne avec téléchargement de CV
+- Postulation en ligne avec téléchargement de CV
 
-Suivi des candidatures envoyées
+- Suivi des candidatures envoyées
 
-Interface responsive et intuitive
+- Interface responsive et intuitive
 
-🏢 Pour les Recruteurs
+## 🏢 Pour les Recruteurs
 
 Publication d'annonces détaillées
 
@@ -31,16 +31,16 @@ Tableau de bord avec statistiques
 
 Modification du statut des candidatures
 
-🛠️ Technologies Utilisées
-Frontend
+# 🛠️ Technologies Utilisées
+## Frontend
 
-React 18
+- React 18
  avec Vite
 
-Tailwind CSS
+- Tailwind CSS
  pour le design
 
-React Router
+- React Router
  pour la navigation
 
 Clerk
@@ -62,15 +62,15 @@ CORS
 
 Stockage local des fichiers (CV)
 
-⚙️ Installation
-📌 Prérequis
+# ⚙️ Installation
+## 📌 Prérequis
 
 Node.js
  (version 16 ou supérieure)
 
 npm ou yarn
 
-🔧 Installation du Backend
+# 🔧 Installation du Backend
 cd backend
 npm install
 npm start

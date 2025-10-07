@@ -1,90 +1,57 @@
 # 🌐 Job Portal - Plateforme de Recrutement
 
-Job Portal est une application web complète de recrutement qui permet :
+**Job Portal** est une application web complète de recrutement qui permet :  
+- aux **candidats** de trouver et postuler à des offres d’emploi,  
+- aux **recruteurs** de publier et gérer leurs annonces ainsi que les candidatures reçues.  
 
-aux candidats de trouver et postuler à des offres d’emploi,
+---
 
-aux recruteurs de publier et gérer leurs annonces ainsi que les candidatures reçues.
+## 🚀 Fonctionnalités
 
-#🚀 Fonctionnalités
-## 👨‍💼 Pour les Candidats
+### 👨‍💼 Pour les Candidats
+- Consultation des offres d'emploi  
+- Recherche et filtrage (titre, localisation, catégorie, type de contrat)  
+- Postulation en ligne avec téléchargement de CV  
+- Suivi des candidatures envoyées  
+- Interface responsive et intuitive  
 
-- Consultation des offres d'emploi
+### 🏢 Pour les Recruteurs
+- Publication d'annonces détaillées  
+- Gestion des candidatures reçues  
+- Téléchargement des CV des candidats  
+- Tableau de bord avec statistiques  
+- Modification du statut des candidatures  
 
-- Recherche et filtrage (titre, localisation, catégorie, type de contrat)
+---
 
-- Postulation en ligne avec téléchargement de CV
+## 🛠️ Technologies Utilisées
 
-- Suivi des candidatures envoyées
+### Frontend
+- [React 18](https://react.dev/) avec [Vite](https://vitejs.dev/)  
+- [Tailwind CSS](https://tailwindcss.com/) pour le design  
+- [React Router](https://reactrouter.com/) pour la navigation  
+- [Clerk](https://clerk.com/) pour l’authentification  
+- [React Toastify](https://fkhadra.github.io/react-toastify/introduction) pour les notifications  
 
-- Interface responsive et intuitive
+### Backend
+- [Node.js](https://nodejs.org/) avec [Express](https://expressjs.com/)  
+- [Multer](https://github.com/expressjs/multer) pour l’upload de fichiers  
+- [CORS](https://developer.mozilla.org/fr/docs/Web/HTTP/CORS) pour les requêtes cross-origin  
+- Stockage local des fichiers (CV)  
 
-## 🏢 Pour les Recruteurs
+---
 
-Publication d'annonces détaillées
+## ⚙️ Installation
 
-Gestion des candidatures reçues
+### 📌 Prérequis
+- [Node.js](https://nodejs.org/) (version **16 ou supérieure**)  
+- npm ou yarn  
 
-Téléchargement des CV des candidats
-
-Tableau de bord avec statistiques
-
-Modification du statut des candidatures
-
-# 🛠️ Technologies Utilisées
-## Frontend
-
-- React 18
- avec Vite
-
-- Tailwind CSS
- pour le design
-
-- React Router
- pour la navigation
-
-Clerk
- pour l’authentification
-
-React Toastify
- pour les notifications
-
-Backend
-
-Node.js
- avec Express
-
-Multer
- pour l’upload de fichiers
-
-CORS
- pour les requêtes cross-origin
-
-Stockage local des fichiers (CV)
-
-# ⚙️ Installation
-## 📌 Prérequis
-
-Node.js
- (version 16 ou supérieure)
-
-npm ou yarn
-
-# 🔧 Installation du Backend
+### 🔧 Installation du Backend
+```bash
 cd backend
 npm install
 npm start
-
-
-👉 Le backend sera accessible sur http://localhost:5000
-
-🎨 Installation du Frontend
-cd client
-npm install
-npm run dev
-
-
-👉 Le frontend sera accessible sur http://localhost:5173
 
 🔑 Configuration
 Variables d’Environnement

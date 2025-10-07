@@ -70,32 +70,9 @@ Récupérez votre clé publique
 Ajoutez-la dans le fichier .env
 
 # 📂 Structure du Projet
-job-portal/
-├── backend/
-│   ├── server.js
-│   ├── package.json
-│   └── uploads/
-│       └── cv/
-├── client/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Navbar.jsx
-│   │   │   ├── Hero.jsx
-│   │   │   ├── JobListing.jsx
-│   │   │   └── JobCard.jsx
-│   │   ├── pages/
-│   │   │   ├── ApplyForm.jsx
-│   │   │   ├── UserApplications.jsx
-│   │   │   └── recruiter/
-│   │   │       ├── CreateJob.jsx
-│   │   │       ├── ApplicationsList.jsx
-│   │   │       └── RecruiterDashboard.jsx
-│   │   ├── context/
-│   │   │   └── AppContext.jsx
-│   │   ├── assets/
-│   │   │   └── assets.js
-│   │   └── App.jsx
-│   └── package.json
+
+<img width="303" height="952" alt="image" src="https://github.com/user-attachments/assets/fee798fc-bb2f-455a-99f1-12d1ac1bf31c" />
+
 
 ## 📡 API Endpoints
 

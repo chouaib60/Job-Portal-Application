@@ -53,14 +53,14 @@ cd backend
 npm install
 npm start
 
-🔑 Configuration
+### 🔑 Configuration
 Variables d’Environnement
 
 Créer un fichier .env dans le dossier client :
 
 VITE_CLERK_PUBLISHABLE_KEY=votre_cle_publique_clerk
 
-Configuration Clerk
+### Configuration Clerk
 
 Créez un compte sur Clerk
 
@@ -68,7 +68,7 @@ Récupérez votre clé publique
 
 Ajoutez-la dans le fichier .env
 
-📂 Structure du Projet
+## 📂 Structure du Projet
 job-portal/
 ├── backend/
 │   ├── server.js
@@ -96,7 +96,7 @@ job-portal/
 │   │   └── App.jsx
 │   └── package.json
 
-📡 API Endpoints
+### 📡 API Endpoints
 Offres d’Emploi
 
 GET /api/jobs → Liste toutes les offres
@@ -105,7 +105,7 @@ GET /api/jobs/:id → Détails d'une offre
 
 POST /api/jobs → Créer une nouvelle offre (recruteur)
 
-Candidatures
+### Candidatures
 
 POST /api/jobs/:jobId/apply → Postuler à une offre
 
@@ -117,7 +117,7 @@ PATCH /api/applications/:id/status → Modifier le statut d'une candidature
 
 GET /api/applications/:id/cv → Télécharger un CV
 
-👨‍🎓 Utilisation
+###👨‍🎓 Utilisation
 Pour les Candidats
 
 Inscrivez-vous ou connectez-vous
@@ -132,7 +132,7 @@ Remplissez le formulaire et uploadez votre CV
 
 Consultez "Mes Candidatures" pour suivre vos postulations
 
-Pour les Recruteurs
+### Pour les Recruteurs
 
 Connectez-vous à votre compte
 
@@ -146,7 +146,7 @@ Téléchargez les CV et modifiez les statuts
 
 Utilisez le tableau de bord pour consulter les statistiques
 
-🔍 Fonctionnalités Avancées
+### 🔍 Fonctionnalités Avancées
 
 Recherche par mots-clés dans le titre
 

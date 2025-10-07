@@ -48,19 +48,20 @@
 - npm ou yarn  
 
 ### 🔧 Installation du Backend
-```bash
+### 🔧 Installation du Backend
+
 cd backend
 npm install
 npm start
 
-### 🔑 Configuration
+🔑 Configuration
 Variables d’Environnement
 
 Créer un fichier .env dans le dossier client :
 
 VITE_CLERK_PUBLISHABLE_KEY=votre_cle_publique_clerk
 
-### Configuration Clerk
+Configuration Clerk
 
 Créez un compte sur Clerk
 
@@ -68,7 +69,7 @@ Récupérez votre clé publique
 
 Ajoutez-la dans le fichier .env
 
-## 📂 Structure du Projet
+# 📂 Structure du Projet
 job-portal/
 ├── backend/
 │   ├── server.js
@@ -96,93 +97,70 @@ job-portal/
 │   │   └── App.jsx
 │   └── package.json
 
-### 📡 API Endpoints
-Offres d’Emploi
+## 📡 API Endpoints
 
-GET /api/jobs → Liste toutes les offres
-
-GET /api/jobs/:id → Détails d'une offre
-
-POST /api/jobs → Créer une nouvelle offre (recruteur)
+### Offres d’Emploi
+- `GET /api/jobs` → Liste toutes les offres  
+- `GET /api/jobs/:id` → Détails d'une offre  
+- `POST /api/jobs` → Créer une nouvelle offre (recruteur)  
 
 ### Candidatures
+- `POST /api/jobs/:jobId/apply` → Postuler à une offre  
+- `GET /api/jobs/:jobId/applications` → Candidatures pour une offre  
+- `GET /api/applications` → Toutes les candidatures  
+- `PATCH /api/applications/:id/status` → Modifier le statut d'une candidature  
+- `GET /api/applications/:id/cv` → Télécharger un CV  
 
-POST /api/jobs/:jobId/apply → Postuler à une offre
+---
 
-GET /api/jobs/:jobId/applications → Candidatures pour une offre
+## 👨‍🎓 Utilisation
 
-GET /api/applications → Toutes les candidatures
-
-PATCH /api/applications/:id/status → Modifier le statut d'une candidature
-
-GET /api/applications/:id/cv → Télécharger un CV
-
-###👨‍🎓 Utilisation
-Pour les Candidats
-
-Inscrivez-vous ou connectez-vous
-
-Parcourez les offres d'emploi
-
-Utilisez les filtres pour affiner votre recherche
-
-Cliquez sur "Apply Now" pour postuler
-
-Remplissez le formulaire et uploadez votre CV
-
-Consultez "Mes Candidatures" pour suivre vos postulations
+### Pour les Candidats
+1. Inscrivez-vous ou connectez-vous  
+2. Parcourez les offres d'emploi  
+3. Utilisez les filtres pour affiner votre recherche  
+4. Cliquez sur **"Apply Now"** pour postuler  
+5. Remplissez le formulaire et uploadez votre CV  
+6. Consultez **"Mes Candidatures"** pour suivre vos postulations  
 
 ### Pour les Recruteurs
+1. Connectez-vous à votre compte  
+2. Accédez à **Espace Recruteur**  
+3. Publiez de nouvelles annonces via **"Publier une annonce"**  
+4. Consultez les candidatures reçues  
+5. Téléchargez les CV et modifiez les statuts  
+6. Utilisez le tableau de bord pour consulter les statistiques  
 
-Connectez-vous à votre compte
+---
 
-Accédez à Espace Recruteur
+## 🔍 Fonctionnalités Avancées
+- Recherche par mots-clés dans le titre  
+- Filtrage par localisation, catégorie d’emploi et type de contrat  
+- Upload sécurisé de CV (PDF, DOC, DOCX — max 5MB)  
+- Téléchargement direct des CV  
 
-Publiez de nouvelles annonces via "Publier une annonce"
+---
 
-Consultez les candidatures reçues
+## 🔒 Sécurité
+- Authentification via **Clerk**  
+- Validation des fichiers uploadés  
+- Protection **CORS**  
+- Validation des données côté serveur  
 
-Téléchargez les CV et modifiez les statuts
+---
 
-Utilisez le tableau de bord pour consulter les statistiques
+## 🛠️ Développement
 
-### 🔍 Fonctionnalités Avancées
+### Ajout de Nouvelles Fonctionnalités
+1. Créez le composant dans le dossier approprié  
+2. Ajoutez la route dans `App.jsx` si nécessaire  
+3. Mettez à jour l'API si besoin  
+4. Testez les fonctionnalités  
 
-Recherche par mots-clés dans le titre
+### Personnalisation
+- Modifier les couleurs via **Tailwind CSS**  
+- Ajouter de nouvelles catégories dans `assets.js`  
+- Personnaliser les modèles d'email  
+- Adapter les formulaires selon vos besoins  
 
-Filtrage par localisation, catégorie d’emploi et type de contrat
 
-Upload sécurisé de CV (PDF, DOC, DOCX — max 5MB)
-
-Téléchargement direct des CV
-
-🔒 Sécurité
-
-Authentification via Clerk
-
-Validation des fichiers uploadés
-
-Protection CORS
-
-Validation des données côté serveur
-
-🛠️ Développement
-Ajout de Nouvelles Fonctionnalités
-
-Créez le composant dans le dossier approprié
-
-Ajoutez la route dans App.jsx si nécessaire
-
-Mettez à jour l'API si besoin
-
-Testez les fonctionnalités
-
-Personnalisation
-
-Modifier les couleurs via Tailwind CSS
-
-Ajouter de nouvelles catégories dans assets.js
-
-Personnaliser les modèles d'email
-
-Adapter les formulaires selon vos besoins

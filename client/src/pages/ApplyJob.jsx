@@ -40,14 +40,12 @@ export default function ApplyForm() {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Vérifier le type de fichier
       const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
       if (!allowedTypes.includes(file.type)) {
         toast.error('Seuls les fichiers PDF, DOC et DOCX sont acceptés');
         e.target.value = '';
         return;
       }
-      // Vérifier la taille (5MB max)
       if (file.size > 5 * 1024 * 1024) {
         toast.error('Le fichier ne doit pas dépasser 5MB');
         e.target.value = '';
